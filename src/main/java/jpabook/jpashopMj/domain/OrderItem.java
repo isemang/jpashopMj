@@ -1,13 +1,17 @@
 package jpabook.jpashopMj.domain;
 
 import jpabook.jpashopMj.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id
@@ -20,7 +24,7 @@ public class OrderItem {
     private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     private int orderPrice; //고객이 주문당시에 주문한 가격
@@ -43,6 +47,7 @@ public class OrderItem {
     }
 
     //==조회 로직==//
+
     /**
      * 주문상품 전체 가격 조회
      */
